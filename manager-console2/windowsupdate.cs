@@ -38,7 +38,7 @@ namespace Manager_console
                     Console.WriteLine("successfully disabled the auto update");
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("!- Restart your Pc now -!");
-                    Console.ForegroundColor = ConsoleColor.White;/
+                    Console.ForegroundColor = ConsoleColor.White;
                 }
                 catch(Exception ex3)
                 {

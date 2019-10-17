@@ -37,7 +37,8 @@ namespace Manager_console
                         break;
 
                     case "defender off"://disables the defender over the registry
-                        windowsdefender.defenderoff();
+                        //windowsdefender.defenderoff();
+                        windowsdefender.checkOS();
                         break;
 
                     case "defender on"://deletes the registry key to re-enable the defender
@@ -48,7 +49,7 @@ namespace Manager_console
                         autoupdate.off();
                         break;
 
-                    case "autoupdate on"://like off but needs a "rework" later
+                    case "autoupdate on"://maybe need rework , but fixed to 90%
                         autoupdate.on();
                         break;
 

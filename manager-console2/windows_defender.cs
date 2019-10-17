@@ -8,6 +8,17 @@ namespace Manager_console
 {
     class windows_defender
     {
+        public void checkOS()
+        {
+            string OSv = System.Environment.OSVersion.ToString();
+            Console.WriteLine(OSv);
+        }
+
+
+
+
+
+
         commands cl = new commands();
         public void defenderoff()
         {
@@ -21,6 +32,8 @@ namespace Manager_console
                 rk.Close();
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("#done");
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("if your already using an anticheat , this function doesnt works");
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("!-Your computer needs a restart now , to disable the defender-!");
                 Console.ForegroundColor = ConsoleColor.White;
