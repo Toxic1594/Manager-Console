@@ -17,7 +17,7 @@ namespace Manager_console
             verify1 verify = new verify1();
             windows_defender windowsdefender = new windows_defender();
             windowsupdate autoupdate = new windowsupdate();
-            verify.verify();
+            //verify.verify();
             
             while (true)
             {

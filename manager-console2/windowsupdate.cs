@@ -38,6 +38,7 @@ namespace Manager_console
                     Console.WriteLine("successfully disabled the auto update");
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("!- Restart your Pc now -!");
+                    Console.ForegroundColor = ConsoleColor.White;/
                 }
                 catch(Exception ex3)
                 {
@@ -72,7 +73,6 @@ namespace Manager_console
             {
                 rk = rk.CreateSubKey("WindowsUpdate");
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("subkeay created at " + rk.ToString());
                 rk.Close();
                 RegistryKey rk2 = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate", true);
                 Console.ForegroundColor = ConsoleColor.White;
@@ -86,13 +86,28 @@ namespace Manager_console
                 RegistryKey rk3 = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate", true);
                 try
                 {
-                    Console.WriteLine("writing key....");
+                    Console.WriteLine("Testing delete key now");
                     Console.ForegroundColor = ConsoleColor.Green;
-                    rk3 = rk3.CreateSubKey("AU");
+                    if (rk3 != null && rk3.Name == "AU")
+                    {
+                        rk3.DeleteSubKey("AU");
+                    }
+                    else
+                    {
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine("key not found , your autoupdate is already enabled");
+                        Console.ForegroundColor = ConsoleColor.White;
+                    }
+                    
+                    Console.WriteLine("key should be deleted now");
+                    rk3.Close();
+                    /*Console.WriteLine("writing key....");
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    //testing later normaly dont need rk3 = rk3.CreateSubKey("AU");
                     rk3.SetValue("NoAutoUpdate", 0);
                     Console.WriteLine("successfully enabled the auto update");
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("!- Restart your Pc now -!");
+                    Console.WriteLine("!- Restart your Pc now -!");*/
                 }
                 catch (Exception ex3)
                 {
