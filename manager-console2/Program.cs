@@ -37,8 +37,8 @@ namespace Manager_console
                         break;
 
                     case "defender off"://disables the defender over the registry
-                        //windowsdefender.defenderoff();
-                        windowsdefender.checkOS();
+                        windowsdefender.defenderoff();
+                        
                         break;
 
                     case "defender on"://deletes the registry key to re-enable the defender

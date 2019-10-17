@@ -8,72 +8,101 @@ namespace Manager_console
 {
     class windows_defender
     {
-        public void checkOS()
+        commands cl = new commands();
+        public bool checkOS()
         {
             string OSv = System.Environment.OSVersion.ToString();
-            Console.WriteLine(OSv);
+            if (OSv.Contains("6.1."))
+            {
+                Console.WriteLine("Windows 7 and lower is not supported, will be added later");
+                cl.commandlist();
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
 
 
 
-
-
-        commands cl = new commands();
         public void defenderoff()
         {
-            Console.Clear();
-            RegistryKey rk = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Policies\Microsoft\Windows Defender", true);
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("writing registry key ...");
-            try
+            bool supportedOS = checkOS();
+            if (supportedOS == true)
             {
-                rk.SetValue("DisableAntiSpyware", 1);
-                rk.Close();
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("#done");
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("if your already using an anticheat , this function doesnt works");
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("!-Your computer needs a restart now , to disable the defender-!");
-                Console.ForegroundColor = ConsoleColor.White;
-            }
-            catch (Exception ex1)
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("error at : " + ex1);
-                Console.ReadKey();
+
+
                 Console.Clear();
-                cl.commandlist();
+                RegistryKey rk = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Policies\Microsoft\Windows Defender", true);
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine("writing registry key ...");
+                try
+                {
+                    rk.SetValue("DisableAntiSpyware", 1);
+                    rk.Close();
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("#done");
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("if your already using an anticheat , this function doesnt works");
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("!-Your computer needs a restart now , to disable the defender-!");
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
+                catch (Exception ex1)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("error at : " + ex1);
+                    Console.ReadKey();
+                    Console.Clear();
+                    cl.commandlist();
+                }
+            }
+            else
+            {
+              
             }
 
 
         }
         public void defenderon()
         {
-            Console.Clear();
-            RegistryKey rk = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Policies\Microsoft\Windows Defender", true);
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("writing registry key ...");
-            try
+            bool supportedOS2 = checkOS();
+            if (supportedOS2 == true)
             {
-                rk.SetValue("DisableAntiSpyware", 0);
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("#done");
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("!-Your computer needs a restart now ,to re-enable the defender-!");
-                Console.ForegroundColor = ConsoleColor.White;
-                rk.Close();
-            }
-            catch (Exception ex2)
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("error at : " + ex2);
-                Console.ReadKey();
                 Console.Clear();
-                cl.commandlist();
-            }
+                RegistryKey rk = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Policies\Microsoft\Windows Defender", true);
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine("writing registry key ...");
+                try
+                {
+                    rk.SetValue("DisableAntiSpyware", 0);
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("#done");
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("!-Your computer needs a restart now ,to re-enable the defender-!");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    rk.Close();
+                }
+                catch (Exception ex2)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("error at : " + ex2);
+                    Console.ReadKey();
+                    Console.Clear();
+                    cl.commandlist();
+                }
 
+            }
+            else
+            {
+
+            }
         }
+          
+       
+
+
     }
 }
